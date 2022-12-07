@@ -1,2 +1,0 @@
-{"firstName":"Archibald","dob":"2015-03-04"}
-<Person><firstName>Archibald</firstName><dob>2015-03-04</dob></Person>
