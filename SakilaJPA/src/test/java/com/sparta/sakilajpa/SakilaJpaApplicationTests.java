@@ -25,6 +25,14 @@ class SakilaJpaApplicationTests {
     private StaffRepository staffRepo;
 
     @Test
+    void testNewQueryMethod(){
+        List<Staff> list = staffRepo.findAllStaffWithShortNames(4);
+        System.out.println(list);
+        List<Staff> list2 = staffRepo.findUsingSQL(3);
+        System.out.println(list2);
+        Assertions.assertTrue(list.size() == 1);
+    }
+    @Test
     void testStaffRelationship(){
         Optional<Staff> mikeOpt = staffRepo.findById((short)1);
         Staff mike = mikeOpt.get();

@@ -3,6 +3,7 @@ package com.sparta.sakilajpa.entities;
 import jakarta.persistence.*;
 
 import java.time.Instant;
+import java.util.Arrays;
 
 @Entity
 @Table(name = "staff")
@@ -132,4 +133,19 @@ public class Staff {
         this.lastUpdate = lastUpdate;
     }
 
+    @Override
+    public String toString() {
+        return "Staff{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", address=" + address +
+                ", email='" + email + '\'' +
+                ", store=" + store +
+                ", active=" + active +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", lastUpdate=" + lastUpdate +
+                '}';
+    }
 }
