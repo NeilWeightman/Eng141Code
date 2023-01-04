@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -21,6 +22,50 @@ public class SakilaApiController {
     @Autowired
     private ActorRepository actorRepo;
 
+    @PostMapping("sakila/actors")
+    public Actor createActor(@RequestBody Actor newActor){
+        newActor.setLastUpdate(Instant.now());
+        System.out.println(newActor);
+        return actorRepo.save(newActor);
+    }
+
+    @PatchMapping("sakila/actors")
+    public Actor updateActorPatch(@RequestBody Actor newState){
+        Optional<Actor> original = actorRepo.findById(newState.getId());
+        Actor revisedState = null;
+        if(original.isPresent()) {
+            revisedState = original.get();
+            if (newState.getFirstName() != null)
+                revisedState.setFirstName(newState.getFirstName());
+            if (newState.getLastName() != null)
+                revisedState.setLastName((newState.getLastName()));
+            revisedState.setLastUpdate(Instant.now());
+            return actorRepo.save(revisedState);
+        } else {
+            return new Actor();
+        }
+    }
+    @PutMapping("sakila/actors")
+    public Actor updateActorPut(@RequestBody Actor newState){
+        Optional<Actor> original = actorRepo.findById(newState.getId());
+        Actor revisedState = null;
+        // if the record exists, update it
+        if(original.isPresent()) {
+            revisedState = original.get();
+            if (newState.getFirstName() != null)
+                revisedState.setFirstName(newState.getFirstName());
+            if (newState.getLastName() != null)
+                revisedState.setLastName((newState.getLastName()));
+            revisedState.setLastUpdate(Instant.now());
+            return actorRepo.save(revisedState);
+        }
+        else
+        // otherwise, insert it
+        {
+            newState.setLastUpdate(Instant.now());
+            return actorRepo.save(newState);
+        }
+    }
     // method mapped onto /sakila/hello
     @GetMapping("/sakila/hello")
     public String sayHello(){
