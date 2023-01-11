@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Actor Details</title>
+</head>
+<body>
+<span th:if="${castList==null}">Actor not Found</span>
+<span th:unless="${castList==null}">
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+        </tr>
+        </thead>
+        <tr th:each="actor:${castList}">
+            <td th:text="${actor.id}"></td>
+            <td th:text="${actor.firstName}"></td>
+            <td th:text="${actor.lastName}"></td>
+        </tr>
+    </table>
+       </span>
+</body>
+</html>

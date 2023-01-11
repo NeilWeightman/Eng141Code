@@ -1,0 +1,17 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Sofia+Sans:wght@100&display=swap');
+
+body{
+
+    background-color: lightblue !important;
+    color: rgb(4, 11, 104);
+    font-family: 'Sofia Sans', sans-serif;
+    font-size: 16px;
+    font-weight: lighter
+}
+
+h1{
+    color :#ffff99;
+}
+

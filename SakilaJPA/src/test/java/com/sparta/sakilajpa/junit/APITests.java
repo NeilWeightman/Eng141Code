@@ -15,7 +15,7 @@ public class APITests {
     void testGetActor(){
         ObjectMapper mapper = JsonMapper.builder()
                 .addModule(new JavaTimeModule())
-                .build();;
+                .build();
         Actor result = null;
         try {
             result = mapper.readValue(new URL("http://localhost:8080/sakila/actors/123"), Actor.class);
@@ -24,5 +24,6 @@ public class APITests {
         }
         System.out.println(result);
         Assertions.assertEquals("JULIANNE", result.getFirstName());
+        Assertions.assertEquals("DENCH", result.getLastName());
     }
 }
