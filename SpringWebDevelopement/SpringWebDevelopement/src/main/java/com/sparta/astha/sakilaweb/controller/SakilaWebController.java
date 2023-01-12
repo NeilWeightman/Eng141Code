@@ -67,12 +67,17 @@ public class SakilaWebController {
         return "displayActor";
     }
 
-    @GetMapping("/sakila/actor/all")
+    @PostMapping("/sakila/actor/all")
     public String findAllActors(Model model){
     List<Actor> allActors = actorRepository.findAll();
     model.addAttribute("allActors",allActors);
     return "allActors";
 }
+
+    @GetMapping("/sakila/login")
+    public String handleLogin(){
+        return "login";
+    }
 
   @GetMapping("/sakila/edit")
     public String displayActorEditForm(int id, Model model){
